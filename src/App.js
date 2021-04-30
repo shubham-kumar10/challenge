@@ -1,34 +1,24 @@
-import { useEffect, useState } from "react";
-import { getDataList } from "./data";
-import ListBox from "./ListBox";
+import { useState } from "react";
 import "./styles.css";
 
 export default function App() {
-  const [data, setData] = useState([
+  const [data] = useState([
     { id: 0, value: "one" },
-    { id: 1, value: "sodn" },
-    { id: 2, value: "two" },
+    { id: 1, value: "two" },
+    { id: 2, value: "three" },
   ]);
   const [tempData, setTempData] = useState([]);
   const [selected, setSelected] = useState([]);
-  // const [tempData, setTempData] = useState([]);
 
-  // useEffect(
-  //   const x = getDataList();
-  //   setData(x),[]);
+  console.log("Component lebel", tempData);
   function handleAdd() {
     console.log(selected);
     console.log(tempData);
     setTempData([...tempData, selected]);
   }
   function handleDelete() {
-    console.log(selected);
-    console.log(tempData);
-    if (tempData) {
-      setTempData((prev) => {
-        prev.splice();
-      });
-    }
+    console.log("select", selected);
+    setTempData(tempData.filter((e) => e.id !== selected.id));
   }
   return (
     <div className="App">
